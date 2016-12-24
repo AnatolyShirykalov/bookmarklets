@@ -1,5 +1,5 @@
 # Usage
-Add to bookmarks "javascript:" + entry "of some file.min.js"
+Add to bookmarks "javascript:" + "entry of some file.min.js"
 
 # Example
 ```
