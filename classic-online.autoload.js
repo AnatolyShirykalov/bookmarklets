@@ -1,1 +1,30 @@
-$($('ul.paging')[0].children).filter((b,a)=>a.classList.length==0).map((a,b)=>b.querySelector('a')).map((b,a)=>a.href).each((b,a)=>$.ajax({url: a, success:(s)=>{$('div.al > table > tbody').append($((new DOMParser().parseFromString(s,'text/html').querySelectorAll('div.al > table > tbody > tr'))).slice(3,13)); $('tr').filter((x,a)=>{if(!a.querySelector('td.new_files')) return null;let c=parseInt(a.querySelector('div.listen > a > span').innerText.replace(/[()]/g,'')); let b = a.querySelectorAll('div.listen > span');let d=parseInt(b[b.length-1].innerText.replace(/[()]/g,'')); return (c+d==0)}).each((x,a)=>$(a).css('display','none'))}}));
+$($('ul.paging')[0].children).filter((index, elem)=>
+  elem.classList.length == 0
+).map((index, elem) =>
+  elem.querySelector('a')
+).map((index, elem) => elem.href).each((index, url) => 
+  $.ajax({
+    url,
+    success: (data) => {
+      $('div.al > table > tbody').append(
+        $(
+          new DOMParser().parseFromString(
+            data,
+            'text/html'
+          ).querySelectorAll('div.al > table > tbody > tr')
+        ).slice(3,13)
+      ); 
+      $('tr').filter((index, elem) => {
+        if(!elem.querySelector('td.new_files')) return null;
+        let comments = parseInt(
+          elem.querySelector('div.listen > a > span').innerText.replace(/[()]/g,'')
+        );
+        let b = elem.querySelectorAll('div.listen > span');
+        let likes = parseInt(b[b.length - 1].innerText.replace(/[()]/g,'')); 
+        return (comments + likes == 0)
+      }).each((item, elem)=>
+        $(item).css('display','none')
+      )
+    }
+  })
+);
