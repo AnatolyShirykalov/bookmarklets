@@ -22,8 +22,8 @@ $($('ul.paging')[0].children).filter((index, elem)=>
         let b = elem.querySelectorAll('div.listen > span');
         let likes = parseInt(b[b.length - 1].innerText.replace(/[()]/g,'')); 
         return (comments + likes == 0)
-      }).each((item, elem)=>
-        $(item).css('display','none')
+      }).each((index, elem)=>
+        $(elem).css('display','none')
       )
     }
   })
