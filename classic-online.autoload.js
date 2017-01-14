@@ -22,9 +22,10 @@ $($('ul.paging')[0].children).filter((index, elem)=>
         let b = elem.querySelectorAll('div.listen > span');
         let likes = parseInt(b[b.length - 1].innerText.replace(/[()]/g,'')); 
         return (comments + likes == 0)
-      }).each((index, elem)=>
+      }).each((index, elem)=>{
         $(elem).css('display','none')
-      )
+        $('audio').each((b, a) => a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') )
+      })
     }
   })
 );
