@@ -24,7 +24,10 @@ $($('ul.paging')[0].children).filter((index, elem)=>
         return (comments + likes == 0)
       }).each((index, elem)=>{
         $(elem).css('display','none')
-        $('audio').each((b, a) => a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') )
+        $('audio').each((b, a) => {
+          a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') 
+          a.style="width: 100%"
+        })
       })
     }
   })
