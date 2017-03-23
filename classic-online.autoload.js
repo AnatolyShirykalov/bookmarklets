@@ -19,6 +19,8 @@
       a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') 
       a.style="width: 100%"
     })
+    $('ul.paging').remove()
+    $('tr').filter((i,e)=>e.textContent.match(/^\s+$/)).remove()
     document.addEventListener('play', function(e){
         var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
@@ -28,12 +30,13 @@
         }
     }, true);
   };
-  [].filter.call( document.querySelector('ul.paging').children, (elem, index) =>
+  let urls = [].filter.call( document.querySelector('ul.paging').children, (elem, index) =>
     elem.classList.length == 0 && elem.querySelector('a')
   ).map((elem, index) =>
     elem.querySelector('a')
-  ).map((elem, index) => elem.href).forEach((url, index) => {
-    wg += 1
+  ).map((elem, index) => elem.href)
+  wg = urls.length
+  urls.forEach((url, index) => {
     $.ajax({
       url,
       success: (data) => {
