@@ -9,18 +9,18 @@
       );
       let b = elem.querySelectorAll('div.listen > span');
       let likes = parseInt(b[b.length - 1].innerText.replace(/[()]/g,'')); 
-      let omi   = x => x > 10 ? 255 - parseInt(1050/x) : 15 * x
-      let red   = omi(likes)
-      let green = omi(comments)
-      elem.style.backgroundColor = `rgb(${red},${green},0)`
-      return (comments == 0 && likes < 3) || (elem.innerHTML.match(/сопрано|баритон|тенор/))
-    }).each((index, elem)=>$(elem).remove())
+      let omi   = x => x > 10 ? 255 - parseInt(1050/x) : 15 * x;
+      let red   = omi(likes);
+      let green = omi(comments);
+      elem.style.backgroundColor = `rgb(${red},${green},0)`;
+      return (comments == 0 && likes < 3) || (elem.innerHTML.match(/сопрано|баритон|тенор/));
+    }).each((index, elem)=>$(elem).remove());
     $('audio').each((b, a) => {
-      a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') 
-      a.style="width: 100%"
-    })
-    $('ul.paging').remove()
-    $('tr').filter((i,e)=>e.textContent.match(/^\s+$/)).remove()
+      a.src = '/a.php?file_id=' + a.id.replace(/^.+_/,'') ;
+      a.style="width: 100%";
+    });
+    $('ul.paging').remove();
+    $('tr').filter((i,e)=>e.textContent.match(/^\s+$/)).remove();
     document.addEventListener('play', function(e){
         var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
@@ -34,8 +34,8 @@
     elem.classList.length == 0 && elem.querySelector('a')
   ).map((elem, index) =>
     elem.querySelector('a')
-  ).map((elem, index) => elem.href)
-  wg = urls.length
+  ).map((elem, index) => elem.href);
+  wg = urls.length;
   urls.forEach((url, index) => {
     $.ajax({
       url,
